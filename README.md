@@ -1,0 +1,3 @@
+- 👋 Hi, I’m @juanjecilla
+- 👀 I’m interested in Mobile Software development
+- 🌱 I’m currently learning backend side with Kotlin and Python

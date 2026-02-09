@@ -1,0 +1,17 @@
+name: Update README with Substack Feed
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update README
+        uses: gautamkrishnar/blog-post-workflow@master
+        with:
+          feed_list: "https://codingpit.substack.com/feed"
+          comment_tag_name: "substack"

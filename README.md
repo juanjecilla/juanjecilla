@@ -22,6 +22,12 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 <!-- SUBSTACK_LATEST:START -->
 <!-- SUBSTACK_LATEST:END -->
 
+## 🎧 Podcast
+
+### 🆕 Latest episodes
+<!-- PODCAST_LATEST:START -->
+<!-- PODCAST_LATEST:END -->
+
 ## 🐍 GitHub Activity
 
 ![Snake animation](https://github.com/juanjecilla/juanjecilla/blob/output/github-contribution-grid-snake2.svg)
@@ -30,6 +36,7 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 - 💼 [LinkedIn](https://www.linkedin.com/in/juanjecilla/)
 - 📝 [Substack - Coding Pit](https://codingpit.substack.com/)
+- 🎥 [YouTube - Welcome to La Secta](https://www.youtube.com/@Welcometolasecta)
 
 ## 🧠 Philosophy
 

@@ -1,0 +1,40 @@
+name: Update podcast episodes
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Update README podcast section
+        env:
+          YOUTUBE_PODCAST_PLAYLIST_ID: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_ID }}
+          YOUTUBE_PODCAST_PLAYLIST_URL: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_URL }}
+          YOUTUBE_CHANNEL_HANDLE: "Welcometolasecta"
+          YOUTUBE_PODCAST_TITLE: "Welcome to La Secta"
+          PODCAST_LATEST_COUNT: "3"
+          README_PATH: "README.md"
+        run: python3 scripts/update_podcast_episodes.py
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update podcast episodes"
+          git push

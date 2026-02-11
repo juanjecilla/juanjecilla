@@ -18,8 +18,13 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ## ✍️ Latest from Coding Pit (Substack)
 
-<!-- START_SECTION:substack -->
-<!-- END_SECTION:substack -->
+### 🆕 Latest posts
+<!-- SUBSTACK_LATEST:START -->
+<!-- SUBSTACK_LATEST:END -->
+
+## 🐍 GitHub Activity
+
+![Snake animation](https://github.com/juanjecilla/juanjecilla/blob/output/github-contribution-grid-snake2.svg)
 
 ## 🛰️ Connect
 

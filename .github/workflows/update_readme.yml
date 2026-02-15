@@ -2,7 +2,7 @@ name: Update README with Substack Posts
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Every day at midnight (UTC)
+    - cron: '0 0 * * 2' # Every Tuesday at midnight (UTC)
   workflow_dispatch:
 
 permissions:
@@ -13,8 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate updater script
+        run: python3 -m py_compile scripts/update_substack_posts.py
       - name: Update README section
         run: python3 scripts/update_substack_posts.py
+      - name: Validate README markers
+        run: |
+          grep -nE "<!-- SUBSTACK_LATEST:START -->|<!-- SUBSTACK_LATEST:END -->" README.md
       - name: Commit changes
         run: |
           if git status --porcelain | grep -q .; then

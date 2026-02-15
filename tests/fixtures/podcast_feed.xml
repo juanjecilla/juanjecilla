@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Welcome to La Secta Podcast</title>
+  <entry>
+    <title>Podcast Episode 101</title>
+    <link rel="alternate" href="https://www.youtube.com/watch?v=episode101" />
+  </entry>
+  <entry>
+    <title>Podcast Episode 100</title>
+    <link rel="alternate" href="https://www.youtube.com/watch?v=episode100" />
+  </entry>
+  <entry>
+    <title>Podcast Episode 099</title>
+    <link rel="alternate" href="https://www.youtube.com/watch?v=episode099" />
+  </entry>
+</feed>

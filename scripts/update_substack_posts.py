@@ -2,6 +2,8 @@
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -10,15 +12,36 @@ FEED_URL = os.getenv("SUBSTACK_FEED_URL", f"https://{PUBLICATION}/feed")
 LATEST_COUNT = int(os.getenv("SUBSTACK_LATEST_COUNT", "3"))
 README_PATH = os.getenv("README_PATH", "README.md")
 LATEST_TAG = os.getenv("SUBSTACK_LATEST_TAG", "SUBSTACK_LATEST")
+FETCH_TIMEOUT_SECONDS = int(os.getenv("SUBSTACK_FETCH_TIMEOUT_SECONDS", "30"))
+FETCH_RETRIES = int(os.getenv("SUBSTACK_FETCH_RETRIES", "3"))
 
 
 def fetch_url(url, headers=None):
-    base_headers = {"User-Agent": "substack-readme-updater"}
+    base_headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+        ),
+        "Accept": "application/rss+xml, application/xml;q=0.9, */*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": f"https://{PUBLICATION}/",
+    }
     if headers:
         base_headers.update(headers)
-    req = urllib.request.Request(url, headers=base_headers)
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read()
+
+    last_error = None
+    for attempt in range(1, FETCH_RETRIES + 1):
+        req = urllib.request.Request(url, headers=base_headers)
+        try:
+            with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT_SECONDS) as resp:
+                return resp.read()
+        except (urllib.error.HTTPError, urllib.error.URLError) as exc:
+            last_error = exc
+            if attempt == FETCH_RETRIES:
+                break
+            time.sleep(attempt)
+
+    raise RuntimeError(f"Failed to fetch {url}: {last_error}") from last_error
 
 
 def parse_rss_items(xml_bytes):
@@ -66,6 +89,8 @@ def parse_rss_items(xml_bytes):
 def fetch_latest_posts(limit):
     xml_bytes = fetch_url(FEED_URL)
     items = parse_rss_items(xml_bytes)
+    if not items:
+        raise RuntimeError(f"No posts found in feed: {FEED_URL}")
     return items[:limit]
 
 

@@ -1,0 +1,76 @@
+name: Updater CI
+
+on:
+  pull_request:
+    paths:
+      - "README.md"
+      - "scripts/update_substack_posts.py"
+      - "scripts/update_podcast_episodes.py"
+      - ".github/workflows/update_readme.yml"
+      - ".github/workflows/update_podcast_episodes.yml"
+      - ".github/workflows/updater_ci.yml"
+      - "tests/fixtures/*"
+  push:
+    branches:
+      - main
+    paths:
+      - "README.md"
+      - "scripts/update_substack_posts.py"
+      - "scripts/update_podcast_episodes.py"
+      - ".github/workflows/update_readme.yml"
+      - ".github/workflows/update_podcast_episodes.yml"
+      - ".github/workflows/updater_ci.yml"
+      - "tests/fixtures/*"
+  workflow_dispatch:
+
+jobs:
+  validate-updaters:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Validate syntax
+        run: |
+          python3 -m py_compile scripts/update_substack_posts.py
+          python3 -m py_compile scripts/update_podcast_episodes.py
+
+      - name: Run offline smoke test
+        run: |
+          cp README.md README.ci.md
+
+          SUBSTACK_FEED_URL="file://${GITHUB_WORKSPACE}/tests/fixtures/substack_feed.xml" \
+          SUBSTACK_LATEST_COUNT="3" \
+          README_PATH="README.ci.md" \
+          python3 scripts/update_substack_posts.py
+
+          YOUTUBE_PODCAST_PLAYLIST_ID="PLofflineSmokeTest01" \
+          YOUTUBE_PODCAST_FEED_URL="file://${GITHUB_WORKSPACE}/tests/fixtures/podcast_feed.xml" \
+          PODCAST_LATEST_COUNT="3" \
+          README_PATH="README.ci.md" \
+          python3 scripts/update_podcast_episodes.py
+
+      - name: Validate output markers and item count
+        run: |
+          grep -q "<!-- SUBSTACK_LATEST:START -->" README.ci.md
+          grep -q "<!-- SUBSTACK_LATEST:END -->" README.ci.md
+          grep -q "<!-- PODCAST_LATEST:START -->" README.ci.md
+          grep -q "<!-- PODCAST_LATEST:END -->" README.ci.md
+
+          substack_count=$(awk '/<!-- SUBSTACK_LATEST:START -->/{f=1;next}/<!-- SUBSTACK_LATEST:END -->/{f=0}f' README.ci.md | grep -c '^- \[')
+          podcast_count=$(awk '/<!-- PODCAST_LATEST:START -->/{f=1;next}/<!-- PODCAST_LATEST:END -->/{f=0}f' README.ci.md | grep -c '^- \[')
+
+          if [ "${substack_count}" -lt 3 ]; then
+            echo "Expected at least 3 Substack items, got ${substack_count}"
+            exit 1
+          fi
+
+          if [ "${podcast_count}" -lt 3 ]; then
+            echo "Expected at least 3 podcast items, got ${podcast_count}"
+            exit 1
+          fi

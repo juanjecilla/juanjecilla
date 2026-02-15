@@ -17,6 +17,7 @@ README_PATH = os.getenv("README_PATH", "README.md")
 LATEST_TAG = os.getenv("PODCAST_LATEST_TAG", "PODCAST_LATEST")
 FETCH_TIMEOUT_SECONDS = int(os.getenv("YOUTUBE_FETCH_TIMEOUT_SECONDS", "30"))
 FETCH_RETRIES = int(os.getenv("YOUTUBE_FETCH_RETRIES", "3"))
+PODCAST_FEED_URL_OVERRIDE = os.getenv("YOUTUBE_PODCAST_FEED_URL", "").strip()
 
 
 def fetch_url(url, headers=None):
@@ -265,7 +266,9 @@ def parse_atom_entries(xml_bytes):
 
 
 def fetch_latest_episodes(playlist_id, limit):
-    feed_url = f"https://www.youtube.com/feeds/videos.xml?playlist_id={playlist_id}"
+    feed_url = PODCAST_FEED_URL_OVERRIDE or (
+        f"https://www.youtube.com/feeds/videos.xml?playlist_id={playlist_id}"
+    )
     xml_bytes = fetch_url(feed_url)
     items = parse_atom_entries(xml_bytes)
     if not items:

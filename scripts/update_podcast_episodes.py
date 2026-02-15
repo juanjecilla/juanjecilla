@@ -3,6 +3,8 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -13,15 +15,37 @@ PODCAST_TITLE_HINT = os.getenv("YOUTUBE_PODCAST_TITLE", "").strip()
 LATEST_COUNT = int(os.getenv("PODCAST_LATEST_COUNT", "3"))
 README_PATH = os.getenv("README_PATH", "README.md")
 LATEST_TAG = os.getenv("PODCAST_LATEST_TAG", "PODCAST_LATEST")
+FETCH_TIMEOUT_SECONDS = int(os.getenv("YOUTUBE_FETCH_TIMEOUT_SECONDS", "30"))
+FETCH_RETRIES = int(os.getenv("YOUTUBE_FETCH_RETRIES", "3"))
 
 
 def fetch_url(url, headers=None):
-    base_headers = {"User-Agent": "podcast-readme-updater"}
+    base_headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        # Helps avoid region/cookie consent pages that hide ytInitialData.
+        "Cookie": "CONSENT=YES+cb.20210328-17-p0.en+FX+470",
+    }
     if headers:
         base_headers.update(headers)
-    req = urllib.request.Request(url, headers=base_headers)
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return resp.read()
+
+    last_error = None
+    for attempt in range(1, FETCH_RETRIES + 1):
+        req = urllib.request.Request(url, headers=base_headers)
+        try:
+            with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT_SECONDS) as resp:
+                return resp.read()
+        except (urllib.error.HTTPError, urllib.error.URLError) as exc:
+            last_error = exc
+            if attempt == FETCH_RETRIES:
+                break
+            time.sleep(attempt)
+
+    raise RuntimeError(f"Failed to fetch {url}: {last_error}") from last_error
 
 
 def extract_playlist_id(value):
@@ -35,16 +59,43 @@ def extract_playlist_id(value):
     return None
 
 
+def extract_rich_text(value):
+    if isinstance(value, str):
+        return value.strip()
+    if not isinstance(value, dict):
+        return ""
+
+    simple_text = value.get("simpleText")
+    if isinstance(simple_text, str) and simple_text.strip():
+        return simple_text.strip()
+
+    runs = value.get("runs")
+    if isinstance(runs, list):
+        text = "".join(
+            run.get("text", "") for run in runs if isinstance(run, dict)
+        ).strip()
+        if text:
+            return text
+
+    return ""
+
+
 def extract_title(node):
     if not isinstance(node, dict):
         return ""
-    title = node.get("title")
-    if isinstance(title, dict):
-        if "simpleText" in title:
-            return title["simpleText"].strip()
-        runs = title.get("runs")
-        if isinstance(runs, list) and runs:
-            return "".join(run.get("text", "") for run in runs).strip()
+
+    for key in ("title", "headline", "name"):
+        text = extract_rich_text(node.get(key))
+        if text:
+            return text
+
+    for key in ("metadata", "lockupMetadataViewModel", "playlistMetadataRenderer"):
+        child = node.get(key)
+        if isinstance(child, dict):
+            text = extract_title(child)
+            if text:
+                return text
+
     return ""
 
 
@@ -91,36 +142,63 @@ def parse_yt_initial_data(html):
     raise RuntimeError("Unable to locate ytInitialData on the YouTube page.")
 
 
+def is_valid_playlist_id(value):
+    return isinstance(value, str) and re.fullmatch(r"[A-Za-z0-9_-]{10,}", value)
+
+
 def collect_playlist_candidates(data):
     candidates = {}
 
-    def visit(node):
+    def add_candidate(playlist_id, title):
+        if not is_valid_playlist_id(playlist_id):
+            return
+        existing = candidates.get(playlist_id, "")
+        if playlist_id not in candidates or (not existing and title):
+            candidates[playlist_id] = title
+
+    def visit(node, context_title=""):
         if isinstance(node, dict):
+            local_title = extract_title(node) or context_title
+            playlist_id = node.get("playlistId")
+            if playlist_id:
+                add_candidate(playlist_id, local_title)
+
             if "playlistRenderer" in node:
                 renderer = node["playlistRenderer"]
-                pid = renderer.get("playlistId")
-                if pid and pid not in candidates:
-                    candidates[pid] = extract_title(renderer)
+                add_candidate(renderer.get("playlistId"), extract_title(renderer))
             if "gridPlaylistRenderer" in node:
                 renderer = node["gridPlaylistRenderer"]
-                pid = renderer.get("playlistId")
-                if pid and pid not in candidates:
-                    candidates[pid] = extract_title(renderer)
+                add_candidate(renderer.get("playlistId"), extract_title(renderer))
+
             for value in node.values():
-                visit(value)
+                visit(value, local_title)
         elif isinstance(node, list):
             for item in node:
-                visit(item)
+                visit(item, context_title)
 
     visit(data)
     return [(pid, title) for pid, title in candidates.items()]
 
 
 def discover_playlist_id(handle, title_hint):
-    url = f"https://www.youtube.com/@{handle}/podcasts"
-    html = fetch_url(url).decode("utf-8", errors="replace")
-    data = parse_yt_initial_data(html)
-    candidates = collect_playlist_candidates(data)
+    page_urls = [
+        f"https://www.youtube.com/@{handle}/podcasts",
+        f"https://www.youtube.com/@{handle}/playlists",
+    ]
+    candidate_map = {}
+
+    for url in page_urls:
+        html = fetch_url(url).decode("utf-8", errors="replace")
+        try:
+            data = parse_yt_initial_data(html)
+        except RuntimeError:
+            continue
+        for playlist_id, title in collect_playlist_candidates(data):
+            existing = candidate_map.get(playlist_id, "")
+            if playlist_id not in candidate_map or (not existing and title):
+                candidate_map[playlist_id] = title
+
+    candidates = [(pid, title) for pid, title in candidate_map.items()]
 
     if not candidates:
         raise RuntimeError(
@@ -128,21 +206,30 @@ def discover_playlist_id(handle, title_hint):
             "YOUTUBE_PODCAST_PLAYLIST_URL."
         )
 
-    if title_hint:
-        lowered_hint = title_hint.lower()
-        for pid, title in candidates:
-            if lowered_hint in title.lower():
-                return pid
-        available = ", ".join(
-            f"{title or 'Untitled'} ({pid})" for pid, title in candidates
-        )
-        raise RuntimeError(
-            "No podcast playlist matched YOUTUBE_PODCAST_TITLE. "
-            f"Available playlists: {available}"
-        )
+    lowered_hint = title_hint.lower() if title_hint else ""
+    if lowered_hint:
+        matched = [
+            (pid, title) for pid, title in candidates if lowered_hint in title.lower()
+        ]
+        if len(matched) == 1:
+            return matched[0][0]
+        if len(matched) > 1:
+            available = ", ".join(
+                f"{title or 'Untitled'} ({pid})" for pid, title in matched
+            )
+            raise RuntimeError(
+                "Multiple podcast playlists matched YOUTUBE_PODCAST_TITLE. "
+                f"Matched playlists: {available}"
+            )
 
     if len(candidates) == 1:
         return candidates[0][0]
+
+    podcast_like = [
+        (pid, title) for pid, title in candidates if "podcast" in title.lower()
+    ]
+    if len(podcast_like) == 1:
+        return podcast_like[0][0]
 
     available = ", ".join(f"{title or 'Untitled'} ({pid})" for pid, title in candidates)
     raise RuntimeError(

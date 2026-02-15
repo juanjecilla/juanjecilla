@@ -5,6 +5,9 @@ on:
     - cron: "0 9 * * 1"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
@@ -22,7 +25,7 @@ jobs:
           YOUTUBE_PODCAST_PLAYLIST_ID: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_ID }}
           YOUTUBE_PODCAST_PLAYLIST_URL: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_URL }}
           YOUTUBE_CHANNEL_HANDLE: "Welcometolasecta"
-          YOUTUBE_PODCAST_TITLE: "Welcome to La Secta"
+          YOUTUBE_PODCAST_TITLE: "podcast"
           PODCAST_LATEST_COUNT: "3"
           README_PATH: "README.md"
         run: python3 scripts/update_podcast_episodes.py

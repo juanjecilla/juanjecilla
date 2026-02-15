@@ -268,6 +268,8 @@ def fetch_latest_episodes(playlist_id, limit):
     feed_url = f"https://www.youtube.com/feeds/videos.xml?playlist_id={playlist_id}"
     xml_bytes = fetch_url(feed_url)
     items = parse_atom_entries(xml_bytes)
+    if not items:
+        raise RuntimeError(f"No episodes found in podcast feed: {feed_url}")
     return items[:limit]
 
 

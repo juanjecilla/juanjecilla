@@ -2,7 +2,7 @@ name: Update podcast episodes
 
 on:
   schedule:
-    - cron: "0 9 * * 1"
+    - cron: "0 9 * * 6"
   workflow_dispatch:
 
 permissions:
@@ -20,6 +20,19 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Validate updater script
+        run: python3 -m py_compile scripts/update_podcast_episodes.py
+
+      - name: Validate podcast source configuration
+        env:
+          YOUTUBE_PODCAST_PLAYLIST_ID: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_ID }}
+          YOUTUBE_PODCAST_PLAYLIST_URL: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_URL }}
+        run: |
+          if [ -z "${YOUTUBE_PODCAST_PLAYLIST_ID}" ] && [ -z "${YOUTUBE_PODCAST_PLAYLIST_URL}" ]; then
+            echo "::error::Set YOUTUBE_PODCAST_PLAYLIST_ID or YOUTUBE_PODCAST_PLAYLIST_URL."
+            exit 1
+          fi
+
       - name: Update README podcast section
         env:
           YOUTUBE_PODCAST_PLAYLIST_ID: ${{ secrets.YOUTUBE_PODCAST_PLAYLIST_ID }}
@@ -29,6 +42,10 @@ jobs:
           PODCAST_LATEST_COUNT: "3"
           README_PATH: "README.md"
         run: python3 scripts/update_podcast_episodes.py
+
+      - name: Validate README markers
+        run: |
+          grep -nE "<!-- PODCAST_LATEST:START -->|<!-- PODCAST_LATEST:END -->" README.md
 
       - name: Commit changes
         run: |

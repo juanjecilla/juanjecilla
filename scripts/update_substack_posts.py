@@ -89,6 +89,8 @@ def parse_rss_items(xml_bytes):
 def fetch_latest_posts(limit):
     xml_bytes = fetch_url(FEED_URL)
     items = parse_rss_items(xml_bytes)
+    if not items:
+        raise RuntimeError(f"No posts found in feed: {FEED_URL}")
     return items[:limit]
 
 

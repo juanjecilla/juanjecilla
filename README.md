@@ -26,9 +26,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [El oscuro secreto de los despidos por IA 🚨 - @Welcometolasecta #014](https://www.youtube.com/watch?v=0fzGiu8YeX0)
 - [Por qué la IA empeora tu código 📉 - @Welcometolasecta #013](https://www.youtube.com/watch?v=VPbQkLOTDg4)
 - [¿Tu IDE ha MUERTO? La Era de los Agentes - @Welcometolasecta #012](https://www.youtube.com/watch?v=i3W0Z3SUbR0)
-- [La GRÁFICA que congela el sector y el secreto de Anthropic - @Welcometolasecta #011](https://www.youtube.com/watch?v=_NtVoe8AGzo)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

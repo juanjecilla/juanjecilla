@@ -26,9 +26,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [El modelo secreto que asusta a los devs 🚨 - @Welcometolasecta #019](https://www.youtube.com/watch?v=gqJF4nhf7OQ)
+- [¿Google se rinde con Gemini? 📉 Por qué la IA decepciona - @Welcometolasecta](https://www.youtube.com/watch?v=438pjk14LoY)
 - [El código basura de IA colapsa GitHub - @Welcometolasecta #017](https://www.youtube.com/watch?v=uHQb1dU3Tg0)
-- [El lenguaje secreto de las IAs 🤫 - @Welcometolasecta #016](https://www.youtube.com/watch?v=I21EH8Z_8uI)
-- [Por qué la IA actual NO es inteligente 🤯 - @Welcometolasecta #015](https://www.youtube.com/watch?v=W56uwDB4dJ0)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

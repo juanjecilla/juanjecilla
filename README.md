@@ -26,9 +26,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [SpaceX salva Cursor y Claude cae 🚨 - @Welcometolasecta #021](https://www.youtube.com/watch?v=joEoguDeEBY)
 - [Lo que nadie te cuenta de los despidos tech - @Welcometolasecta #020](https://www.youtube.com/watch?v=klJ8z-91bTU)
 - [El modelo secreto que asusta a los devs 🚨 - @Welcometolasecta #019](https://www.youtube.com/watch?v=gqJF4nhf7OQ)
-- [¿Google se rinde con Gemini? 📉 Por qué la IA decepciona - @Welcometolasecta](https://www.youtube.com/watch?v=438pjk14LoY)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

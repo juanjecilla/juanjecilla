@@ -20,6 +20,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest posts
 <!-- SUBSTACK_LATEST:START -->
+- [37 - Evangelist](https://codingpit.substack.com/p/37-evangelist)
+- [36 - Cert Pinning](https://codingpit.substack.com/p/36-cert-pinning)
+- [35 - Decorator pattern](https://codingpit.substack.com/p/35-decorator-pattern)
 <!-- SUBSTACK_LATEST:END -->
 
 ## 🎧 Podcast

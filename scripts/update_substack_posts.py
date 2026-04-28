@@ -16,6 +16,10 @@ FETCH_TIMEOUT_SECONDS = int(os.getenv("SUBSTACK_FETCH_TIMEOUT_SECONDS", "30"))
 FETCH_RETRIES = int(os.getenv("SUBSTACK_FETCH_RETRIES", "3"))
 
 
+class FeedUnavailableError(RuntimeError):
+    """Raised when the feed returns a transient/access error (e.g. 403)."""
+
+
 def fetch_url(url, headers=None):
     base_headers = {
         "User-Agent": (
@@ -35,7 +39,16 @@ def fetch_url(url, headers=None):
         try:
             with urllib.request.urlopen(req, timeout=FETCH_TIMEOUT_SECONDS) as resp:
                 return resp.read()
-        except (urllib.error.HTTPError, urllib.error.URLError) as exc:
+        except urllib.error.HTTPError as exc:
+            last_error = exc
+            if exc.code in (403, 429):
+                raise FeedUnavailableError(
+                    f"Feed returned HTTP {exc.code} — skipping update"
+                ) from exc
+            if attempt == FETCH_RETRIES:
+                break
+            time.sleep(attempt)
+        except urllib.error.URLError as exc:
             last_error = exc
             if attempt == FETCH_RETRIES:
                 break
@@ -133,6 +146,9 @@ def main():
 if __name__ == "__main__":
     try:
         main()
+    except FeedUnavailableError as exc:
+        print(f"WARNING: {exc} — README unchanged.", file=sys.stderr)
+        sys.exit(0)
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         sys.exit(1)

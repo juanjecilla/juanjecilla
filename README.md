@@ -16,6 +16,12 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 - 🎡 **Organizer** at [GDG Aranjuez](https://gdg.community.dev/gdg-aranjuez/) - Building a local tech community one meetup at a time.
 
+## ✍️ Latest from Coding Pit (Substack)
+
+### 🆕 Latest posts
+<!-- SUBSTACK_LATEST:START -->
+<!-- SUBSTACK_LATEST:END -->
+
 ## 🎧 Podcast
 
 ### 🆕 Latest episodes

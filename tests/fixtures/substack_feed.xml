@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Coding Pit</title>
+    <item>
+      <title>Post A</title>
+      <link>https://codingpit.substack.com/p/post-a</link>
+    </item>
+    <item>
+      <title>Post B</title>
+      <link>https://codingpit.substack.com/p/post-b</link>
+    </item>
+    <item>
+      <title>Post C</title>
+      <link>https://codingpit.substack.com/p/post-c</link>
+    </item>
+  </channel>
+</rss>

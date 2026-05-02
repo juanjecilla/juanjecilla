@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [Por qué GitHub te cobrará por programar 💸 - @Welcometolasecta #022](https://www.youtube.com/watch?v=hxXsOCSArtA)
 - [SpaceX salva Cursor y Claude cae 🚨 - @Welcometolasecta #021](https://www.youtube.com/watch?v=joEoguDeEBY)
 - [Lo que nadie te cuenta de los despidos tech - @Welcometolasecta #020](https://www.youtube.com/watch?v=klJ8z-91bTU)
-- [El modelo secreto que asusta a los devs 🚨 - @Welcometolasecta #019](https://www.youtube.com/watch?v=gqJF4nhf7OQ)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

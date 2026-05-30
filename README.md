@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [Por qué la IA destruirá a los Juniors 🚨 - @Welcometolasecta #026](https://www.youtube.com/watch?v=Uip7rPsytHU)
 - [Anthropic hunde a OpenAI y hackean GitHub 🚨 - @Welcometolasecta #025](https://www.youtube.com/watch?v=JRaZfH_y7uQ)
 - [¿La IA destruirá tu trabajo como dev? - @Welcometolasecta #024](https://www.youtube.com/watch?v=Sk20gM68CPg)
-- [Por qué dejé de escribir código para siempre - @Welcometolasecta #023](https://www.youtube.com/watch?v=7opWCzsCyj4)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

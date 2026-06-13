@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [La IA empieza a entrenarse a sí misma 🤯 - @Welcometolasecta #028](https://www.youtube.com/watch?v=-SoaOBv40D4)
 - [Por qué ya nadie quiere Opus 4.8 - @Welcometolasecta #027](https://www.youtube.com/watch?v=E0XqRP8NqqY)
 - [Por qué la IA destruirá a los Juniors 🚨 - @Welcometolasecta #026](https://www.youtube.com/watch?v=Uip7rPsytHU)
-- [Anthropic hunde a OpenAI y hackean GitHub 🚨 - @Welcometolasecta #025](https://www.youtube.com/watch?v=JRaZfH_y7uQ)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

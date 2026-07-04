@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [Lo que nadie te cuenta de la cirugía 3D - @Welcometolasecta #031](https://www.youtube.com/watch?v=vji9f85QjpA)
 - [El hospital que imprime huesos en 3D 🦴 - @Welcometolasecta #030](https://www.youtube.com/watch?v=xGQ0UptsoKY)
 - [Adiós GitHub Copilot: SpaceX compra Cursor - @Welcometolasecta #029](https://www.youtube.com/watch?v=LiieHc_kXmw)
-- [La IA empieza a entrenarse a sí misma 🤯 - @Welcometolasecta #028](https://www.youtube.com/watch?v=-SoaOBv40D4)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

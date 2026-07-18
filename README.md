@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [Lo que nadie te cuenta de GPT-5.6 🤯 - @Welcometolasecta #033](https://www.youtube.com/watch?v=x46bMuPQmFI)
 - [Por qué las empresas huyen de ChatGPT - @Welcometolasecta #032](https://www.youtube.com/watch?v=eRuZ7mJzaZA)
 - [Lo que nadie te cuenta de la cirugía 3D - @Welcometolasecta #031](https://www.youtube.com/watch?v=vji9f85QjpA)
-- [El hospital que imprime huesos en 3D 🦴 - @Welcometolasecta #030](https://www.youtube.com/watch?v=xGQ0UptsoKY)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [El fin de OpenAI: China domina la IA 🚨 - @Welcometolasecta #034](https://www.youtube.com/watch?v=yEqFZve0g8w)
 - [Lo que nadie te cuenta de GPT-5.6 🤯 - @Welcometolasecta #033](https://www.youtube.com/watch?v=x46bMuPQmFI)
 - [Por qué las empresas huyen de ChatGPT - @Welcometolasecta #032](https://www.youtube.com/watch?v=eRuZ7mJzaZA)
-- [Lo que nadie te cuenta de la cirugía 3D - @Welcometolasecta #031](https://www.youtube.com/watch?v=vji9f85QjpA)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

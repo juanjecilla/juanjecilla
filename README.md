@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
-- [¿Nos quedan 6 meses? IA vs Programadores 🤖 - @Welcometolasecta #035](https://www.youtube.com/watch?v=bPh8tSi2_JQ)
-- [El fin de OpenAI: China domina la IA 🚨 - @Welcometolasecta #034](https://www.youtube.com/watch?v=yEqFZve0g8w)
-- [Lo que nadie te cuenta de GPT-5.6 🤯 - @Welcometolasecta #033](https://www.youtube.com/watch?v=x46bMuPQmFI)
+- [OpenAI vs Anthropic: ¿Quién gana la guerra de precios? - @Welcometolasecta #038](https://www.youtube.com/watch?v=LMy8Lf53U2c)
+- [OpenAI vs Anthropic: ¿Quién gana la guerra de precios? - @Welcometolasecta #038](https://www.youtube.com/watch?v=LMy8Lf53U2c)
+- [¿La IA se nos va de las manos? 🔥 Expertos debaten - @Welcometolasecta #037](https://www.youtube.com/watch?v=tZkvgatm95k)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

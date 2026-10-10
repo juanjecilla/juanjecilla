@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
-- [OpenAI DevDay 2026: ¿El fin de las suscripciones? - @Welcometolasecta #039](https://www.youtube.com/watch?v=Fs1uGEkvlew)
-- [OpenAI vs Anthropic: ¿Quién gana la guerra de precios? - @Welcometolasecta #038](https://www.youtube.com/watch?v=LMy8Lf53U2c)
-- [OpenAI vs Anthropic: ¿Quién gana la guerra de precios? - @Welcometolasecta #038](https://www.youtube.com/watch?v=LMy8Lf53U2c)
+- [¿Han muerto los IDEs? JetBrains pierde dinero por 1ª vez 💀 - @Welcometolasecta 02x04 #040](https://www.youtube.com/watch?v=CGJrvkCmquU)
+- [OpenAI DevDay 2026: ¿El fin de las suscripciones? - @Welcometolasecta 02x03 #039](https://www.youtube.com/watch?v=Fs1uGEkvlew)
+- [OpenAI vs Anthropic: ¿Quién gana la guerra de precios? - @Welcometolasecta 02X02 #038](https://www.youtube.com/watch?v=LMy8Lf53U2c)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

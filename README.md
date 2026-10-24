@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [Opus 5.5: el modelo SÍ importa 🔥 - @Welcometolasecta 02x06 #042](https://www.youtube.com/watch?v=ZhHQ_Hljof0)
 - [La IA que destapa contratos opacos 🕵️ - @Welcometolasecta 02x05 #041](https://www.youtube.com/watch?v=F5MKdNbENXQ)
 - [¿Han muerto los IDEs? JetBrains pierde dinero por 1ª vez 💀 - @Welcometolasecta 02x04 #040](https://www.youtube.com/watch?v=CGJrvkCmquU)
-- [OpenAI DevDay 2026: ¿El fin de las suscripciones? - @Welcometolasecta 02x03 #039](https://www.youtube.com/watch?v=Fs1uGEkvlew)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

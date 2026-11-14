@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [¿Una espía china tras Jensen Huang? 🕵️ - @Welcometolasecta 02x09 #045](https://www.youtube.com/watch?v=yAoVlu2icbU)
 - [¿Aguantará GitHub un x30? Y hackean hasta neveras 🔥 - @Welcometolasecta 02x08 #044](https://www.youtube.com/watch?v=bfZzDAsBnZI)
 - [Anthropic sale a bolsa 📈 Todas las noticias de IA de octubre - @Welcometolasecta 02x07 #043](https://www.youtube.com/watch?v=auWMV_Bge8U)
-- [Opus 5.5: el modelo SÍ importa 🔥 - @Welcometolasecta 02x06 #042](https://www.youtube.com/watch?v=ZhHQ_Hljof0)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity

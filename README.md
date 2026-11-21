@@ -29,9 +29,9 @@ Deep into native mobile & bridge-building — currently scaling Android architec
 
 ### 🆕 Latest episodes
 <!-- PODCAST_LATEST:START -->
+- [Jensen deja NVIDIA, Anthropic sale a bolsa y un cohete atrapado al vuelo ⚡ Mini episodio #046](https://www.youtube.com/watch?v=GLJ6yOKj8p0)
+- [GPT-6.2 decepciona y Jensen dimite 😱 - @Welcometolasecta 02x10 #046](https://www.youtube.com/watch?v=cfxeNeGZpuQ)
 - [¿Una espía china tras Jensen Huang? 🕵️ - @Welcometolasecta 02x09 #045](https://www.youtube.com/watch?v=yAoVlu2icbU)
-- [¿Aguantará GitHub un x30? Y hackean hasta neveras 🔥 - @Welcometolasecta 02x08 #044](https://www.youtube.com/watch?v=bfZzDAsBnZI)
-- [Anthropic sale a bolsa 📈 Todas las noticias de IA de octubre - @Welcometolasecta 02x07 #043](https://www.youtube.com/watch?v=auWMV_Bge8U)
 <!-- PODCAST_LATEST:END -->
 
 ## 🐍 GitHub Activity
